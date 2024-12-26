@@ -13,7 +13,7 @@ These are the feautres I implemented:
 To Run This:
     Download the zip file, then unzip it. In the directory with the package.json, run:
     ```
-        nmp install
+        npm install
     ```
     Run this command to create the tunnel, and log in with UMN account:
     ```
