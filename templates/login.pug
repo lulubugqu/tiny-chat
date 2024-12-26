@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Login
+    link#style(rel='stylesheet', href='/css/main.css')
+    script(src='/js/login.js', defer='')
+  body.login
+    h1  welcome to
+    img#loginPic(src='/images/logo.png', alt='Tiny Chat Logo', width='600')
+    form#loginForm(autocomplete='off')
+      .out
+        div
+          label(for='un') Username:
+          input#un.input(type='text', name='un', required='')
+        div
+          label(for='pw') Password:
+          input#pw.input(type='text', name='pw', required='')
+        div
+          // checks against auth table to log in
+          button#loginBtn(type='button') Login
+          |  
+          p#errorMsg
+        div
+          // just a post to add info to auth table
+          button#createAcctBtn(type='button') Create Account!
+          |  
+          p#errorMsgCreate

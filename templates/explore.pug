@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title explore
+    link#style(rel='stylesheet', href='css/main.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    script(src='/js/main.js', defer='')
+body.explore
+    include includes/nav.pug
+    .postContainer
+      div#exploreGeneral
+        div#exploreTitle
+          h2 check out these posts!
+          h3#sortStatement currently sorted by newest posts
+        div#exploreSort
+          a.sortBtn(href="/explore?page=1&sort=likes")  sort by likes
+          //- button.sortBtn(type='button', id='sortButton')
+          //-   span#sortBtn sort by likes
+      div#allPosts
+      each post in posts
+        div.post(id=`${post.id}`)
+          - const postDate = new Date(post.postDate);
+          - const dateTime = postDate.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true});
+          h3.username= post.postUser
+          p= post.postMessage
+          div#postInfoGeneral
+            div#postInfoDate
+              p #{dateTime}
+            div#postInfoHeart
+              button.button.button-like
+                i.fa.fa-heart
+                span.span(id=`${post.id}`)  #{post.postLikes} likes
+      if page 
+      nav#postPages
+        if page>=2
+          a(href="/explore?page="+(page-1))  prev 
+        span= page   
+        a(href="/explore?page="+(page+1))  next

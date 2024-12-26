@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title profile
+    link#style(href='css/main.css', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='https://unpkg.com/css.gg@2.0.0/icons/css/trash.css', rel='stylesheet')
+    link(href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', rel='stylesheet')
+
+    script(src='/js/main.js', defer='')
+    script(src='/js/profile.js', defer='')
+  body.profile
+    include includes/nav.pug
+    .profileContainer
+      .leftDiv
+        h2 your profile
+        .PostDiv
+          each post in posts
+            div.post(id=`${post.id}`)
+                - const postDate = new Date(post.postDate);
+                - const dateTime = postDate.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true});
+                h3= post.postUser
+                p= post.postMessage
+                div#postInfoGeneral
+                  div#postInfoDate
+                    p #{dateTime}
+                  div#postInfoHeart
+                    p#like
+                      i.fa.fa-heart
+                      span#postLikes  #{post.postLikes} likes
+                  div#postDelete
+                    button.deletePostBtn(type='button')
+                      i.gg-trash
+                  div#postEdit
+                    button.EditPostBtn(type='button')
+                      i.bx.bx-edit-alt
+      .rightDiv
+        h2 make a post
+        .createPostDiv
+          div#postTextBoxDiv
+            label(for='postText')
+            //- input#postText.input(type='text', name='postText', required='')
+            textarea#postText(name='postText', placeholder='type your message here :D', required='', maxlength='280')
+            button.makePostBtn(type='button') Post!
